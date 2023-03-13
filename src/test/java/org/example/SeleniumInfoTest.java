@@ -15,9 +15,9 @@ import org.openqa.selenium.support.locators.RelativeLocator;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class SeleniumInfoTest {
-    public static final String PAGE_FILE = "file:///Users/lucas/Git/ensino/tc1/basic-registration-form/authenticate.html";
-    private WebDriver driver;
+    public static final String PAGE_FILE = "file:///Users/lucas/Git/ensino/tc1/basic-registration-form/authenticate.html"; //PUT YOUR URL HERE
 
+    private WebDriver driver;
 
     @BeforeEach
     void setUp() {
@@ -45,5 +45,4 @@ public class SeleniumInfoTest {
         softly.assertThat(email.getCssValue("padding")).as("Padding").isEqualTo("15px");
         softly.assertAll();
     }
-
 }

@@ -9,13 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.locators.RelativeLocator;
 import org.openqa.selenium.support.ui.Select;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
-
 
 public class SeleniumInteractionsTest {
     public static final String PAGE_FILE = "file:///Users/lucas/Git/ensino/tc1/basic-registration-form/authenticate.html";
@@ -64,6 +59,4 @@ public class SeleniumInteractionsTest {
         Thread.sleep(1500);
         assertThat(select.getFirstSelectedOption().getText()).isEqualTo("2001");
     }
-
-
 }

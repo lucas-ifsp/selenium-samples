@@ -20,7 +20,6 @@ public class SeleniumLocatorsTest {
     public static final String PAGE_FILE = "file:///Users/lucas/Git/ensino/tc1/basic-registration-form/authenticate.html";
     private WebDriver driver;
 
-
     @BeforeEach
     void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -95,6 +94,4 @@ public class SeleniumLocatorsTest {
         final WebElement link = driver.findElement(locator);
         assertThat(link.getText()).isEqualTo("Crie uma conta");
     }
-
-
 }

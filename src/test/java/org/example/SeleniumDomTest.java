@@ -9,6 +9,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,7 +27,9 @@ public class SeleniumDomTest {
     @BeforeEach
     void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
@@ -34,7 +45,6 @@ public class SeleniumDomTest {
         final String accessibleName = searchBar.getAccessibleName();
         System.out.println(accessibleName);
     }
-
 
     @Test
     @DisplayName("Should open Google and write in the bar")
@@ -59,13 +69,13 @@ public class SeleniumDomTest {
     @Test
     @DisplayName("Should result page title start with the text being searched and end with Pesquisa Google")
     void shouldResultPageTitleStartWithTheTextBeingSearchedAndEndWithPesquisaGoogle() throws InterruptedException {
+        long start = System.currentTimeMillis();
         driver.get("https://www.google.com");
         driver.findElement(By.className("gLFyf")).sendKeys("Selenium WebDriver");
-        Thread.sleep(200);
+        Thread.sleep(1000);
         driver.findElement(By.className("gNO89b")).click(); // the search button class is "gNO89b"
-        final String title = driver.getTitle();
-        Thread.sleep(200);
-        assertThat(title).startsWith("Selenium WebDriver - Pesquisa Google");
+        assertThat(driver.getTitle()).startsWith("Selenium WebDriver - Pesquisa Google");
+        long finish = System.currentTimeMillis();
+        System.out.println(finish - start);
     }
-
 }
