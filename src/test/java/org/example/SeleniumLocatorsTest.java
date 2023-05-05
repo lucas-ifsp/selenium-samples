@@ -9,12 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class SeleniumLocatorsTest {
     public static final String PAGE_FILE = "file:///Users/lucas/Git/ensino/tc1/basic-registration-form/authenticate.html";
@@ -23,7 +23,12 @@ public class SeleniumLocatorsTest {
     @BeforeEach
     void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        // There is a bug in ChromeDriver after Chrome updated to version 111.
+        // Add options to driver solve the problem, but it is a temporary workaround
+        // For more info: https://groups.google.com/g/chromedriver-users/c/xL5-13_qGaA
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach

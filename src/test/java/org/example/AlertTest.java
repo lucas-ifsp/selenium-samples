@@ -20,6 +20,9 @@ public class AlertTest {
         @BeforeEach
         void setUp() {
             WebDriverManager.chromedriver().setup();
+            // There is a bug in ChromeDriver after Chrome updated to version 111.
+            // Add options to driver solve the problem, but it is a temporary workaround
+            // For more info: https://groups.google.com/g/chromedriver-users/c/xL5-13_qGaA
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             driver = new ChromeDriver(options);
